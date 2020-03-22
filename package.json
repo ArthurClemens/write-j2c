@@ -1,6 +1,6 @@
 {
   "name": "write-j2c",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Write j2c to CSS files",
   "main": "dist/write-j2c",
   "module": "dist/write-j2c.module.js",
