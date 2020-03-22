@@ -1,0 +1,62 @@
+{
+  "name": "write-j2c",
+  "version": "1.0.0",
+  "description": "Write j2c to CSS files",
+  "main": "dist/write-j2c",
+  "module": "dist/write-j2c.module.js",
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "build": "npm run clean && npm run build:commonjs && npm run build:module",
+    "build:commonjs": "babel ./src --config-file ./babel.config.js --out-file dist/write-j2c.js --extensions '.ts'",
+    "build:module": "babel ./src --config-file ./babel.config.module.js --out-file dist/write-j2c.module.js --extensions '.ts'",
+    "test": "rm -rf test/results/* && mocha",
+    "typecheck": "tsc"
+  },
+  "files": [
+    "dist",
+    "index.d.ts",
+    "README.md"
+  ],
+  "dependencies": {
+    "autoprefixer": "^9.7.4",
+    "babel-preset-minify": "^0.5.1",
+    "cssbeautify": "^0.3.1",
+    "cssnano": "^4.1.10",
+    "j2c": "^1.0.0-4",
+    "j2c-plugin-prefix-browser": "^1.0.7",
+    "perfectionist": "^2.4.0",
+    "postcss": "^7.0.27",
+    "tar": "^6.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-external-helpers": "^7.8.3",
+    "@babel/plugin-transform-arrow-functions": "^7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
+    "@babel/plugin-transform-object-assign": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "@types/autoprefixer": "^9.7.1",
+    "@types/cssnano": "^4.0.0",
+    "@types/tar": "^4.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-json": "^2.1.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "5.0.2",
+    "eslint": "^6.8.0",
+    "mocha": "^7.1.1",
+    "prettier": "2.0.1",
+    "typescript": "^3.8.3"
+  },
+  "author": "Arthur Clemens <arthurclemens@gmail.com> (http://arthurclemens.com)",
+  "homepage": "https://github.com/ArthurClemens/write-j2c",
+  "license": "MIT"
+}
