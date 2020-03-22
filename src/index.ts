@@ -77,10 +77,13 @@ interface writeCSSOptions {
 
 export const writeCSS = (props: writeCSSOptions) => {
   const sourceMap = props.sourceMap === undefined ? true : props.sourceMap;
+  const styles = Array.isArray(props.styles)
+    ? props.styles
+    : [props.styles];
   const cssString = props.css
     ? props.css
-    : props.styles
-    ? props.styles.reduce(
+    : styles
+    ? styles.reduce(
         (acc: string, current: Styles) =>
           current !== undefined ? acc + makeStyleSheet(current) : acc,
         '',

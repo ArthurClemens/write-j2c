@@ -1,4 +1,5 @@
 const styles = require('./styles');
+const styleObject = require('./styleObject');
 
 const path = require('path');
 const fs = require('fs');
@@ -8,6 +9,9 @@ const assert = require('assert');
 
 /* global describe, it */
 
+const readFile = path =>
+  fs.readFileSync(path, 'utf8').trim();
+  
 describe('writeCSS', () => {
   const getResultPath = fileName =>
     path.resolve(__dirname, `./results/${fileName}`);
@@ -31,12 +35,12 @@ describe('writeCSS', () => {
         return done(new Error('Sourcemap not found'));
       }
 
-      const contentResultMap = fs.readFileSync(pathResultMap, 'utf8');
-      const contentExpectedMap = fs.readFileSync(pathExpectedMap, 'utf8');
+      const contentResultMap = readFile(pathResultMap);
+      const contentExpectedMap = readFile(pathExpectedMap);
       assert(contentResultMap === contentExpectedMap);
 
-      const contentResult = fs.readFileSync(pathResult, 'utf8');
-      const contentExpected = fs.readFileSync(pathExpected, 'utf8');
+      const contentResult = readFile(pathResult);
+      const contentExpected = readFile(pathExpected);
       assert(contentResult === contentExpected);
 
       return done();
@@ -56,8 +60,8 @@ describe('writeCSS', () => {
       const contentResultMapExists = fs.existsSync(pathResultMap);
       assert(!contentResultMapExists);
 
-      const contentResult = fs.readFileSync(pathResult, 'utf8');
-      const contentExpected = fs.readFileSync(pathExpected, 'utf8');
+      const contentResult = readFile(pathResult);
+      const contentExpected = readFile(pathExpected);
       assert(contentResult === contentExpected);
 
       done();
@@ -73,8 +77,8 @@ describe('writeCSS', () => {
       path: pathResult,
       beautify: true,
     }).then(() => {
-      const contentResult = fs.readFileSync(pathResult, 'utf8');
-      const contentExpected = fs.readFileSync(pathExpected, 'utf8');
+      const contentResult = readFile(pathResult);
+      const contentExpected = readFile(pathExpected);
       assert(contentResult === contentExpected);
 
       done();
@@ -99,12 +103,12 @@ describe('writeCSS', () => {
       const contentResultGzipExists = fs.existsSync(pathResultGzip);
       assert(contentResultGzipExists);
 
-      const contentResultGzip = fs.readFileSync(pathResultGzip, 'utf8');
-      const contentExpectedGzip = fs.readFileSync(pathExpectedGzip, 'utf8');
+      const contentResultGzip = readFile(pathResultGzip);
+      const contentExpectedGzip = readFile(pathExpectedGzip);
       assert(contentResultGzip === contentExpectedGzip);
 
-      const contentResult = fs.readFileSync(pathResult, 'utf8');
-      const contentExpected = fs.readFileSync(pathExpected, 'utf8');
+      const contentResult = readFile(pathResult);
+      const contentExpected = readFile(pathExpected);
       assert(contentResult === contentExpected);
 
       done();
@@ -122,8 +126,25 @@ describe('writeCSS', () => {
       beautify: true,
       sourceMap: false,
     }).then(() => {
-      const contentResult = fs.readFileSync(pathResult, 'utf8');
-      const contentExpected = fs.readFileSync(pathExpected, 'utf8');
+      const contentResult = readFile(pathResult);
+      const contentExpected = readFile(pathExpected);
+      assert(contentResult === contentExpected);
+
+      done();
+    });
+  });
+
+  it('Handle a style object', done => {
+    const fileName = 'test-object.css';
+    const pathResult = getResultPath(fileName);
+    const pathExpected = getExpectedPath(fileName);
+    writeCSS({
+      styles: styleObject,
+      path: pathResult,
+      sourceMap: false,
+    }).then(() => {
+      const contentResult = readFile(pathResult).trim();
+      const contentExpected = readFile(pathExpected).trim();
       assert(contentResult === contentExpected);
 
       done();

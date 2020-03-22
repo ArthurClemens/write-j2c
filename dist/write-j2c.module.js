@@ -34,7 +34,8 @@ const templateWithGlobal = function (css) {
 
 export const writeCSS = function (props) {
   const sourceMap = props.sourceMap === undefined ? true : props.sourceMap;
-  const cssString = props.css ? props.css : props.styles ? props.styles.reduce(function (acc, current) {
+  const styles = Array.isArray(props.styles) ? props.styles : [props.styles];
+  const cssString = props.css ? props.css : styles ? styles.reduce(function (acc, current) {
     return current !== undefined ? acc + makeStyleSheet(current) : acc;
   }, '') : '';
   const processedCss = props.wrapInGlobal ? templateWithGlobal(cssString) : cssString;
