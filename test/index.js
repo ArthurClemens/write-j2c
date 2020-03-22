@@ -3,7 +3,7 @@ const styleObject = require('./styleObject');
 
 const path = require('path');
 const fs = require('fs');
-const { writeCSS } = require('../dist/write-j2c');
+const { writej2c } = require('../dist/write-j2c');
 
 const assert = require('assert');
 
@@ -12,7 +12,7 @@ const assert = require('assert');
 const readFile = path =>
   fs.readFileSync(path, 'utf8').trim();
   
-describe('writeCSS', () => {
+describe('writej2c', () => {
   const getResultPath = fileName =>
     path.resolve(__dirname, `./results/${fileName}`);
 
@@ -24,7 +24,7 @@ describe('writeCSS', () => {
     const pathResult = getResultPath(fileName);
     const pathExpected = getExpectedPath(fileName);
 
-    writeCSS({
+    writej2c({
       styles,
       path: pathResult,
     }).then(() => {
@@ -51,7 +51,7 @@ describe('writeCSS', () => {
     const fileName = 'test-no-sourcemap.css';
     const pathResult = getResultPath(fileName);
     const pathExpected = getExpectedPath(fileName);
-    writeCSS({
+    writej2c({
       styles,
       path: pathResult,
       sourceMap: false,
@@ -72,7 +72,7 @@ describe('writeCSS', () => {
     const fileName = 'test-beautify.css';
     const pathResult = getResultPath(fileName);
     const pathExpected = getExpectedPath(fileName);
-    writeCSS({
+    writej2c({
       styles,
       path: pathResult,
       beautify: true,
@@ -89,7 +89,7 @@ describe('writeCSS', () => {
     const fileName = 'test-gzip.css';
     const pathResult = getResultPath(fileName);
     const pathExpected = getExpectedPath(fileName);
-    writeCSS({
+    writej2c({
       styles,
       path: pathResult,
       gzip: true,
@@ -119,7 +119,7 @@ describe('writeCSS', () => {
     const fileName = 'test-global.css';
     const pathResult = getResultPath(fileName);
     const pathExpected = getExpectedPath(fileName);
-    writeCSS({
+    writej2c({
       styles,
       path: pathResult,
       wrapInGlobal: true,
@@ -138,7 +138,7 @@ describe('writeCSS', () => {
     const fileName = 'test-object.css';
     const pathResult = getResultPath(fileName);
     const pathExpected = getExpectedPath(fileName);
-    writeCSS({
+    writej2c({
       styles: styleObject,
       path: pathResult,
       sourceMap: false,

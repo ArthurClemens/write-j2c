@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.writeCSS = void 0;
+exports.writej2c = void 0;
 
 var _autoprefixer = _interopRequireDefault(require("autoprefixer"));
 
@@ -48,7 +48,7 @@ const templateWithGlobal = function (css) {
 }`;
 };
 
-const writeCSS = function (props) {
+const writej2c = function (props) {
   const sourceMap = props.sourceMap === undefined ? true : props.sourceMap;
   const styles = Array.isArray(props.styles) ? props.styles : [props.styles];
   const cssString = props.css ? props.css : styles ? styles.reduce(function (acc, current) {
@@ -108,4 +108,4 @@ const writeCSS = function (props) {
   });
 };
 
-exports.writeCSS = writeCSS;
+exports.writej2c = writej2c;

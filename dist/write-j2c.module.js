@@ -32,7 +32,7 @@ const templateWithGlobal = function (css) {
 }`;
 };
 
-export const writeCSS = function (props) {
+export const writej2c = function (props) {
   const sourceMap = props.sourceMap === undefined ? true : props.sourceMap;
   const styles = Array.isArray(props.styles) ? props.styles : [props.styles];
   const cssString = props.css ? props.css : styles ? styles.reduce(function (acc, current) {

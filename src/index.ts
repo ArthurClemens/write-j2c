@@ -75,7 +75,7 @@ interface writeCSSOptions {
   wrapInGlobal: boolean;
 }
 
-export const writeCSS = (props: writeCSSOptions) => {
+export const writej2c = (props: writeCSSOptions) => {
   const sourceMap = props.sourceMap === undefined ? true : props.sourceMap;
   const styles = Array.isArray(props.styles)
     ? props.styles

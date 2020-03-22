@@ -4,7 +4,7 @@
 ## Usage
 
 ```javascript
-writeCSS(options)
+writej2c(options)
 ```
 
 ## Example
@@ -37,10 +37,10 @@ export default = [
 
 ```javascript
 // postbuild.js
-import { writeCSS } from "write-j2c"
+import { writej2c } from "write-j2c"
 import styles from "./styles"
 
-writeCSS({
+writej2c({
   styles,
   path: "./dist/app.css",
   beautify: true

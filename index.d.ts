@@ -37,5 +37,5 @@ interface writeCSSOptions {
      */
     wrapInGlobal: boolean;
 }
-export declare const writeCSS: (props: writeCSSOptions) => Promise<{}>;
+export declare const writej2c: (props: writeCSSOptions) => Promise<{}>;
 export {};
